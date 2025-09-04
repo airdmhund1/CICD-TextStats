@@ -1,0 +1,31 @@
+[31mF[0m
+=================================== FAILURES ===================================
+[31m[1m___________________________ test_analyze_text_basic ____________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_analyze_text_basic[39;49;00m():[90m[39;49;00m
+        text = [33m"[39;49;00m[33mHello world![39;49;00m[33m\n[39;49;00m[33mHello again.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+        stats = analyze_text(text)[90m[39;49;00m
+        [94massert[39;49;00m stats[[33m"[39;49;00m[33mlines[39;49;00m[33m"[39;49;00m] == [94m2[39;49;00m[90m[39;49;00m
+>       [94massert[39;49;00m stats[[33m"[39;49;00m[33mwords[39;49;00m[33m"[39;49;00m] == [94m3[39;49;00m[90m[39;49;00m
+[1m[31mE       assert 4 == 3[0m
+
+[1m[31mtests/test_core.py[0m:9: AssertionError
+
+---------- coverage: platform linux, python 3.11.8-final-0 -----------
+Name                            Stmts   Miss  Cover
+---------------------------------------------------
+src/textstat_mini/__init__.py       2      0   100%
+src/textstat_mini/cli.py           37     37     0%
+src/textstat_mini/core.py          17      6    65%
+---------------------------------------------------
+TOTAL                              56     43    23%
+Coverage XML written to file coverage.xml
+
+[31m[1mFAIL Required test coverage of 90% not reached. Total coverage: 23.21%
+[0m[36m[1m=========================== short test summary info ============================[0m
+[31mFAILED[0m tests/test_core.py::[1mtest_analyze_text_basic[0m - assert 4 == 3
+[31m!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!![0m
+[31m[31m[1m1 failed[0m[31m in 0.79s[0m[0m
+
+/home/sandbox/.local/lib/python3.11/site-packages/ddtrace/vendor/psutil/_pslinux.py:527: RuntimeWarning: 'sin' and 'sout' swap memory stats couldn't be determined and were set to 0 ([Errno 2] No such file or directory: '/proc/vmstat')
+  warnings.warn(msg, RuntimeWarning)
