@@ -1,3 +1,13 @@
+"""
+Unit tests for textstat_mini.cli.
+
+These tests validate the CLI behavior:
+- Inline text input
+- File input
+- Conflicting arguments
+- Missing file handling
+"""
+
 import os
 import tempfile
 
@@ -5,6 +15,7 @@ from textstat_mini.cli import main
 
 
 def test_cli_with_text(capsys):
+    """CLI should handle inline text input and display stats + top words."""
     rc = main(["--text", "Hello hello world", "--top", "2"])
     out = capsys.readouterr().out
     assert rc == 0
@@ -15,6 +26,7 @@ def test_cli_with_text(capsys):
 
 
 def test_cli_with_file(tmp_path, capsys):
+    """CLI should read from a file and output word frequencies."""
     p = tmp_path / "sample.txt"
     p.write_text("a b a c a", encoding="utf-8")
     rc = main(["--file", str(p), "--top", "1"])
@@ -24,7 +36,7 @@ def test_cli_with_file(tmp_path, capsys):
 
 
 def test_cli_conflicting_args_stderr(capsys):
-    # providing both --text and --file should error
+    """CLI should exit with error when both --text and --file are provided."""
 
     with tempfile.NamedTemporaryFile("w", delete=False) as f:
         f.write("x")
@@ -42,6 +54,7 @@ def test_cli_conflicting_args_stderr(capsys):
 
 
 def test_cli_missing_file(capsys, tmp_path):
+    """CLI should exit with error when a non-existent file is given."""
     missing = tmp_path / "nope.txt"
     rc = main(["--file", str(missing)])
     err = capsys.readouterr().err
